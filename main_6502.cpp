@@ -61,7 +61,7 @@ struct CPU {
 				case INS_LDA_IM: {
 					Byte Value = FetchByte( cycles, memory);
 					A = Value;
-					Z = (A == 0)
+					Z = (A == 0);
 					N = (A & 0b10000000) > 0;
 				} break;
 			}
