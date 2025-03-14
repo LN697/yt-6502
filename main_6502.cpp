@@ -19,6 +19,10 @@ struct Mem {
 	Byte operator[]( u32 Address ) const {
 		return Data[Address];
 	}
+	
+	Byte& operator[]( u32 Address ) {
+		return Data[Address];
+	}
 };
 
 struct CPU {
@@ -64,6 +68,9 @@ struct CPU {
 					Z = (A == 0);
 					N = (A & 0b10000000) > 0;
 				} break;
+				default: {
+					printf("Instruction not implemented %d", Ins);
+				} break;
 			}
 		}
 	}
@@ -73,6 +80,8 @@ int main() {
 	Mem mem;
 	CPU cpu;
 	cpu.Reset( mem );
+	mem[0xFFFC] = CPU::INS_LDA_IM; 
+	mem[0xFFFD] = 0xFF;
 	cpu.Execute( 2, mem );
 	return 0;
 }

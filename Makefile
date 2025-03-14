@@ -1,7 +1,7 @@
 GXX = g++
 
 build:
-	$(GXX) -o main main_6502.cpp
+	$(GXX) -g -o main main_6502.cpp
 
 clean:
 	rm -rf main
